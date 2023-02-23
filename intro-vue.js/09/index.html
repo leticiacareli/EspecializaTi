@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./assets/style.css">
+
+    <title>Curso de Vue.js 3</title>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div v-bind:style="styles">
+
+            <label for="themeBlack">
+
+                <input  
+                    type="checkbox" 
+                    v-bind:checked="themeBlack" 
+                    @click="toogleTheme" 
+                    name="themeBlack" 
+                    id="themeBlack"> 
+                    
+                    Dark
+
+            </label>
+
+            <h1> {{title}} </h1>
+
+            <p>{{ fullName }}</p>
+
+            <h3>Carrinho ({{cart.length}})</h3>
+
+            <ul>
+
+                <li v-for="(product, index) in products" v-bind:key="index">
+
+                    <p> {{product.title}} </p>
+
+                    <img 
+                        v-bind:src="product.image" 
+                        v-bind:alt="product.title" 
+                        style="max-width: 500px;">
+
+                    <strong v-if="product.stars > 0"> {{product.stars}} </strong>
+
+                    <!-- prevent para o redirecionamento da página  -->
+                    <!-- <a 
+                        href="#" 
+                        @click.prevent="removeCart(product)"
+                        v-if="inCart(product)">
+
+                        Remove cart
+
+                    </a> -->
+
+                    <button @click.prevent="addCart(product)"
+                            v-bind:disabled="inCart(product)"
+                            v-bind:class="['color', {'button-disabled' : inCart(product)}]">
+
+                        Add cart
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div> <!-- app -->
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="app.js"></script>   
+   
+
+
+
+</body>
+
+</html>
