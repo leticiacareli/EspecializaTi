@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./assets/style.css">
+
+    <title>Curso de Vue.js 3</title>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div v-bind:style="styles">
+
+            <label for="themeBlack">
+
+                <input  
+                    type="checkbox" 
+                    v-bind:checked="themeBlack" 
+                    @click="toogleTheme" 
+                    name="themeBlack" 
+                    id="themeBlack"> 
+                    
+                    Dark
+
+            </label>
+
+            <h1> {{title}} </h1>
+
+            <p>{{ fullName }}</p>
+
+            <h3>Carrinho ({{cart.length}})</h3>
+
+            <ul>
+
+                <li v-for="(product, index) in products" v-bind:key="index">
+
+                    <product-detail 
+                        v-bind:product="product"
+                        v-bind:product-in-cart="inCart(product)"
+                        @addProd-cart="addCard" >
+                        
+
+                    </product-detail>
+            
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div> <!-- app -->
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="app.js"></script>   
+    <script src="./components/producDetail.js"></script>
+    
+    <script>
+        app.mount('#app');
+    </script>
+   
+
+
+
+</body>
+
+</html>
